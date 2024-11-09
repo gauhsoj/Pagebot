@@ -11,7 +11,6 @@ module.exports.config = {
 // Main code execution starts here
 // 'event' and 'args' are parameters passed by the command handler
 module.exports.run = function ({ event }) {
-  // Sends a button message to the user
   api.graph({
     recipient: {
       id: event.sender.id
@@ -25,7 +24,7 @@ module.exports.run = function ({ event }) {
           buttons: [
             {
               type: 'web_url',
-              url: "https://www.facebook.com/yandeva.me",
+              url: "https://www.facebook.com/joshg101",
               title: "Check Profile"
             },
             {
