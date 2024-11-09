@@ -8,7 +8,7 @@ module.exports.config = {
 
 const axios = require("axios");
 
-module.exports.run = async function ({ event, api }) {
+module.exports.run = async function ({ event }) {
   function reply(q) {
     api.sendMessage(q, event.sender.id);
   }
