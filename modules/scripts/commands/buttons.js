@@ -25,7 +25,7 @@ module.exports.run = function ({ event }) {
             {
               type: 'web_url',
               url: "https://www.facebook.com/joshg101",
-              title: "Check Profile"
+              title: "Contact Deku"
             },
             {
               type: 'postback',
