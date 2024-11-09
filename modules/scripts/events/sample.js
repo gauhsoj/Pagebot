@@ -14,8 +14,7 @@ module.exports.run = async function ({ event, args }) {
   if (event.type === "message") {
     const base = "https://joshweb.click";
     const id = event.sender.id;
-    const q = args.join(" ");
-    if (!q) return reply("Missing query");
+    const q = event.message.text;
     const res = await axios.get(base + "/api/gpt-4o?q=" + q + "&uid=" + id);
     reply(res.data.result);
   }
