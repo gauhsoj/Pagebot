@@ -17,6 +17,6 @@ module.exports.run = function ({ event, args }) {
   const id = event.sender.id;
   const q = args.join(" ");
   if (!q) return reply("Missing query");
-  const { data } = axios.get(base + "/api/gpt-4o?q=" + q + "&uid=" + id);
-  reply(data.result);
+  const res = axios.get(base + "/api/gpt-4o?q=" + q + "&uid=" + id);
+  reply(res.data.result);
 };
