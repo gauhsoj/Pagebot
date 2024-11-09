@@ -1,20 +1,22 @@
 module.exports.config = {
-  name: 'The Book of Knowledge', // JEJEMON HAHAHAHAHA
-  author: 'Yan Maglinte',
-  version: '1.0',
-  description: 'Public events can be place here. It will keep on listening events.',
+  name: "auto",
+  author: "Deku",
+  version: "1.0",
+  description:
+    "Griffith AI",
   selfListen: false,
 };
-
-module.exports.run = async function({ event, args }) {
-  // YOU CAN ADD ANYTHING HERE, ADD MORE OR DO WHAT YOU WANT HERE, I DON'T CARE ^-^
-  
-  /** EVENT TYPES
-   * postback
-   * quick_reply
-   * message_reaction
-   * message_reply
-   * message
-   * mark_as_seen
-   * @YanMaglinte **/
+const axios = require("axios");
+module.exports.run = async function ({ event, args }) {
+  function reply(q) {
+    api.sendMessage(q, event.sender.id);
+  }
+  if (event.type === "message") {
+    const base = "https://joshweb.click";
+    const id = event.sender.id;
+    const q = args.join(" ");
+    if (!q) return reply("Missing query");
+    const res = await axios.get(base + "/api/gpt-4o?q=" + q + "&uid=" + id);
+    reply(res.data.result);
+  }
 };
