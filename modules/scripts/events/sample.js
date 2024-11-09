@@ -19,9 +19,7 @@ module.exports.run = async function ({ event }) {
     const q = event.message.text;
 
     try {
-      const res = await axios.get(`${base}/api/gpt-4o?q=${q}&uid=${id}`, {
-        timeout: 10000, 
-      });
+      const res = await axios.get(`${base}/api/gpt-4o?q=${q}&uid=${id}`);
       reply(res.data.result);
       console.log(res.data.result);
     } catch (error) {
