@@ -5,7 +5,7 @@ module.exports.config = {
   description: "Griffith AI",
   selfListen: false,
 };
-const { chat } = require("../utils.js");
+const { chat } = require(__dirname + "/griffith.js");
 
 module.exports.run = async function ({ event }) {
   function reply(q) {
