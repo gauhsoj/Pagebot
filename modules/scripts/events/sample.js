@@ -5,8 +5,7 @@ module.exports.config = {
   description: "Griffith AI",
   selfListen: false,
 };
-
-const axios = require("axios");
+const { chat } = require("../utils.js");
 
 module.exports.run = async function ({ event }) {
   function reply(q) {
@@ -14,22 +13,13 @@ module.exports.run = async function ({ event }) {
   }
 
   if (event.type === "message") {
-    const base = "https://joshweb.click";
-    const id = event.sender.id;
-    const q = event.message.text;
-
     try {
-      const res = await axios.get(`${base}/api/gpt-4o?q=${q}&uid=${id}`);
-      reply(res.data.result);
-      console.log(res.data.result);
-    } catch (error) {
-      if (error.code === "ETIMEDOUT") {
-        console.error("Request timed out. Please try again later.");
-        reply("Sorry, the request timed out. Please try again later.");
-      } else {
-        console.error(error.message);
-        reply(error.message);
-      }
+      const id = event.sender.id;
+      const msg = event.message.text;
+      const res = await chat(id, msg);
+      return reply(res);
+    } catch (err) {
+      reply("Error: " + err);
     }
   }
 };
