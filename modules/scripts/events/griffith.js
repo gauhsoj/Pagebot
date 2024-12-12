@@ -3,6 +3,11 @@ const axios = require('axios');
 let convo = {};
 
 async function chat(id, message) {
+    if (message.toLowerCase() === "clear") {
+        convo[id] = [];
+        return "Conversation history cleared.";
+    }
+
     if (!convo[id]) {
         convo[id] = [];
     }
@@ -48,8 +53,6 @@ async function chat(id, message) {
         "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
     };
 
-    //   console.log(JSON.stringify(payload, null, 2));
-
     try {
         const response = await axios.post("https://www.blackbox.ai/api/chat", payload, { headers });
 
@@ -69,6 +72,7 @@ async function chat(id, message) {
         throw error;
     }
 }
+
 function generateId() {
     return Math.random().toString(36).substring(2, 15);
 }
@@ -76,3 +80,4 @@ function generateId() {
 module.exports = {
     chat
 }
+
