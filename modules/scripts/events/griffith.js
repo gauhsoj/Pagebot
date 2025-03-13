@@ -110,13 +110,13 @@ function generateId() {
     return Math.random().toString(36).substring(2, 15);
 }
 
-// usage
-(async () => {
-    const id = generateId();
-    const message = "Hello, how are you?";
-    const response = await chat(id, message);
-    console.log(response);
-})();
+// // usage
+// (async () => {
+//     const id = generateId();
+//     const message = "Hello, how are you?";
+//     const response = await chat(id, message);
+//     console.log(response);
+// })();
 
 
 module.exports = {
